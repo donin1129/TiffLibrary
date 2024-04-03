@@ -63,7 +63,7 @@ namespace TiffLibrary.Tests.PhotometricInterpretations
             byte[] ycbcrReference = new byte[count * 3];
             converter.ConvertFromRgb24(reference.AsSpan(offset, count), ycbcrReference, count);
 
-            using TiffFileReader reader = await TiffFileReader.OpenAsync(fileContent);
+            await using TiffFileReader reader = await TiffFileReader.OpenAsync(fileContent);
             TiffImageDecoder decoder = await reader.CreateImageDecoderAsync();
 
             TiffRgb24[] pixels = new TiffRgb24[count];
